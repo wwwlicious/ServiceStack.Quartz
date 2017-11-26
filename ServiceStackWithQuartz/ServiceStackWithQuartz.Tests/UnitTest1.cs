@@ -1,14 +1,14 @@
-﻿using System;
-using NUnit.Framework;
-using ServiceStackWithQuartz.ServiceInterface;
-using ServiceStackWithQuartz.ServiceModel;
-using ServiceStack.Testing;
-using ServiceStack;
-
-namespace ServiceStackWithQuartz.Tests
+﻿namespace ServiceStackWithQuartz.Tests
 {
-    [TestFixture]
-    public class UnitTests
+    using System;
+    using FluentAssertions;
+    using ServiceStack;
+    using ServiceStack.Testing;
+    using ServiceStackWithQuartz.ServiceInterface;
+    using ServiceStackWithQuartz.ServiceModel;
+    using Xunit;
+
+    public class UnitTests : IDisposable
     {
         private readonly ServiceStackHost appHost;
 
@@ -24,20 +24,19 @@ namespace ServiceStackWithQuartz.Tests
             .Init();
         }
 
-        [TestFixtureTearDown]
-        public void TestFixtureTearDown()
-        {
-            appHost.Dispose();
-        }
-
-        [Test]
+        [Fact]
         public void TestMethod1()
         {
             var service = appHost.Container.Resolve<MyServices>();
 
             var response = (HelloResponse)service.Any(new Hello { Name = "World" });
 
-            Assert.That(response.Result, Is.EqualTo("Hello, World!"));
+            response.Result.Should().Be("Hello, World!");
+        }
+
+        public void Dispose()
+        {
+            appHost?.Dispose();
         }
     }
 }

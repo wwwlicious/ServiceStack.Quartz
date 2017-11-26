@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Copyright>Copyright © 2016</Copyright>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
+    <Configurations>Debug;Release;netstandard</Configurations>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ServiceStack.Server" Version="5.0.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceStackWithQuartz.ServiceModel\ServiceStackWithQuartz.ServiceModel.csproj">
+      <Project>{8D6DE92C-637E-4433-9810-98D7FBCEA6BA}</Project>
+      <Name>ServiceStackWithQuartz.ServiceModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
