@@ -1,8 +1,8 @@
-# ServiceStack.Quartz  [![Build status](https://ci.appveyor.com/api/projects/status/sfp7sg7gh6x1x580/branch/master?svg=true)](https://ci.appveyor.com/project/CodeRevver/servicestackwithquartz/branch/master)
+# ServiceStack.Quartz  [![Build status](https://ci.appveyor.com/api/projects/status//branch/master?svg=true)](https://ci.appveyor.com/project/wwwlicious/servicestack.quartz/branch/master)
 
 ServiceStack.Quartz is a plugin for [ServiceStack](https://servicestack.net/) that provides simple integration with [Quartz.Net](https://www.quartz-scheduler.net/).
 
-## Compatability
+## Compatibility
 
 |Name|Min Version|
 |---------|-----------|
@@ -32,7 +32,7 @@ public class AppHost : AppHostBase
     public void Configure(Container container)
     {
         var quartzFeature = new QuartzFeature();
-        
+
         // create a simple job trigger to repeat every minute 
         quartzFeature.RegisterJob<MyJob>(
                                      trigger =>
@@ -41,8 +41,8 @@ public class AppHost : AppHostBase
                                           .RepeatForever()
                                      )
                                      .Build()
-                                 );        
-        
+                                 );
+
         Plugins.Add(quartzFeature);
     }
 }
@@ -53,7 +53,7 @@ public class MyJob : IJob
     public Task Execute(IJobExecutionContext context)
     {
         // job code goes here
-        
+
         return context.AsTaskResult();
     }
 }
@@ -62,8 +62,8 @@ public class MyJob : IJob
 ## Defaults
 
 * Jobs - By default, the plugin will scan all assemblies for implementations of Quartz.Net's `IJob` interface.
-* Configuration - By default, the plugin will read the standard Quartz.Net's configuration (if specified). 
-* Lifecycle - By default, the scheduler is started after the the `AppHost` has initialised and shutdown when the `AppHost` is disposed. 
+* Configuration - By default, the plugin will read the standard Quartz.Net's configuration (if specified).
+* Lifecycle - By default, the scheduler is started after the the `AppHost` has initialised and shutdown when the `AppHost` is disposed.
 
 ## Api
 
@@ -78,11 +78,11 @@ If you have the metadata plugin enabled, a 'Quartz' link will be available on th
 * [Configuration](docs/configuration.md)
 * [Registration](docs/registration.md)
 
-# Credits 
+## Credits
 
 * [ServiceStackWithQuartz](https://github.com/CodeRevver/ServiceStackWithQuartz)
 * [Random names](https://gist.github.com/jesusgoku/7dda3c291229e1280b18)
 
+## Contributions
 
-* [Contributions](docs/contributions.md)
-
+Before contributing, please read [Contributions.md](docs/contributions.md)
