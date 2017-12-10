@@ -71,16 +71,18 @@ The plugin exposes an API where you can view and control the scheduler, jobs and
 
 If you have the metadata plugin enabled, a 'Quartz' link will be available on the default metadata page.
 
-* Scheduler API - *http://{hostaddress}:{port}/quartz*
+* Scheduler API - *http://{hostaddress}:{port}/quartz/api*
 
 ## Further documentation
 
 * [Configuration](docs/configuration.md)
 * [Registration](docs/registration.md)
-* [Job Data](docs/jobdata.md)
-* [Job Dependencies](docs/dependencies.md)
 
 # Credits 
 
 * [ServiceStackWithQuartz](https://github.com/CodeRevver/ServiceStackWithQuartz)
 * [Random names](https://gist.github.com/jesusgoku/7dda3c291229e1280b18)
+
+
+* [Contributions](docs/contributions.md)
+

@@ -1,9 +1,0 @@
-<!--
-title: Jobs
--->
-
-{{ Jobs
-| groupBy: it.key.group
-| let({ group: 'it.Key', jobs: 'it' })
-| selectPartial: jobGroup
-}}

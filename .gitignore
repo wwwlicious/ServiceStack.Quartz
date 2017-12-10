@@ -162,6 +162,17 @@ AppPackages/
 # but keep track of directories ending in .cache
 !*.[Cc]ache/
 
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Build related
+tools/
+BuildArtifacts/
+*.temp.nuspec
+tests/integration/repos/
+Cake.Recipe/Content/version.cake
+
 # Others
 ClientBin/
 [Ss]tyle[Cc]op.*
