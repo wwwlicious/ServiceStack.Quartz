@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Copyright>Copyright © 2016</Copyright>
+    <Copyright>Copyright © 2017</Copyright>
     <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NET452;</DefineConstants>
   </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2_0|AnyCPU'">
-        <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;</DefineConstants>
-    </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2_0|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;</DefineConstants>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
@@ -17,4 +17,7 @@
     <PackageReference Include="Quartz" Version="3.0.0-beta1" />
     <PackageReference Include="ServiceStack.Server" Version="5.0.0" />
   </ItemGroup>
+  <!--<ItemGroup>
+    <EmbeddedResource Include="quartz-ui\**\*.*" Exclude="bin\**;obj\**;@(EmbeddedResource)" />
+  </ItemGroup>-->
 </Project>

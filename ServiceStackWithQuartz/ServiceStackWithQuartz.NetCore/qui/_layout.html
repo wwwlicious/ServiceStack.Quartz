@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Quartz.Net Dashboard">
+    <meta name="author" content="Scott Mackay">
+
+    {{ ifDebug | select: <script>{ '/js/hot-loader.js' | includeFile }</script> }}
+    <link rel="stylesheet" href="/quartz/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/quartz/assets/css/default.css">
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a title="Quartz.Net UI" class="navbar-brand" href="/quartz" style="width:220px;">
+            <img src="/quartz/assets/img/logo-32.png" width="42" height="32" class="d-inline-block align-top" alt="" style="float:left;margin:0 10px 0 0">
+            <h3><span class="text-muted">Quartz.Net :</span> {{ title }}</h3>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {{ 'menu' | partial }}
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col pt-3">
+            {{ page }}
+            {{ ex | htmlErrorDebug() }}
+        </div>
+    </div>
+</div>
+
+<script src="/quartz/assets/js/jquery.min.js"></script>
+<script src="/quartz/assets/js/bootstrap.min.js"></script>
+<script src="/quartz/assets/js/default.js"></script>
+
+{{ scripts | raw }}
+
+</body>
+</html>

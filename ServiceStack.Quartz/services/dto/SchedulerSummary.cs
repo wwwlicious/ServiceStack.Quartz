@@ -10,6 +10,7 @@ namespace ServiceStack.Quartz
         public string JobStoreType { get; set; }
         public int NumberOfJobsExecuted { get; set; }
         public DateTimeOffset? RunningSince { get; set; }
+        public TimeSpan? RunTime => RunningSince?.Subtract(DateTimeOffset.Now);
         public string SchedulerInstanceId { get; set; }
         public string SchedulerName { get; set; }
         public bool SchedulerRemote { get; set; }
@@ -19,6 +20,5 @@ namespace ServiceStack.Quartz
         public int ThreadPoolSize { get; set; }
         public string ThreadPoolType { get; set; }
         public string Version { get; set; }
-        public string Summary { get; set; }
     }
 }

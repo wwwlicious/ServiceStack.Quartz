@@ -7,7 +7,6 @@ namespace ServiceStack.Quartz.Funq
     using global::Funq;
     using global::Quartz;
     using global::Quartz.Impl;
-    using global::Quartz.Simpl;
     using global::Quartz.Spi;
 
     /// <summary>

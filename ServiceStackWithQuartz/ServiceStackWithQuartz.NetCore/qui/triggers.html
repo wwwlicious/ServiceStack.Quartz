@@ -1,0 +1,12 @@
+<!--
+title: Triggers
+-->
+
+<p class="lead">
+    Quartz Triggers
+</p>
+
+{{ Triggers
+| groupBy: it.group
+| let({ group: 'it.Key', triggers: 'it' })
+| htmlDump }}

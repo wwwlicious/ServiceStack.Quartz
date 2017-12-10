@@ -7,9 +7,15 @@
     <e p="C:\Users\scott\.nuget\packages\xunit.runner.visualstudio\2.3.1\build\_common\xunit.runner.visualstudio.testadapter.dll" t="Include" />
     <e p="C:\Users\scott\.Rider2017.2\system\resharper-host\local\Transient\ReSharperHost\v10\SolutionCaches\_ServiceStackWithQuartz.-1518061800.00" t="ExcludeRecursive" />
     <e p="C:\Users\scott\RiderProjects\ServiceStackWithQuartz" t="IncludeFlat">
+      <e p="docs" t="Include">
+        <e p="configuration.md" t="Include" />
+        <e p="registration.md" t="Include" />
+      </e>
       <e p="packages" t="ExcludeRecursive" />
+      <e p="README.md" t="Include" />
       <e p="ServiceStack.Quartz" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="CircularBuffer.cs" t="Include" />
         <e p="extensions" t="Include">
           <e p="AppSettingsExtensions.cs" t="Include" />
           <e p="FunqQuartzExtensions.cs" t="Include" />
@@ -18,9 +24,10 @@
           <e p="FunqJobFactory.cs" t="Include" />
           <e p="QuartzRegistry.cs" t="Include" />
         </e>
-        <e p="JobInstance.cs" t="Include" />
+        <e p="InMemoryJobListener.cs" t="Include" />
+        <e p="NameGenerator.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="netstandard" t="Include">
+          <e p="Debug" t="Include">
             <e p="net452" t="Include">
               <e p="ServiceStack.Quartz.AssemblyInfo.cs" t="Include" />
             </e>
@@ -29,25 +36,57 @@
             </e>
           </e>
         </e>
+        <e p="quartz-ui-1" t="Include">
+          <e p="_layout.html" t="Include" />
+          <e p="assets" t="Include">
+            <e p="css" t="Include">
+              <e p="bootstrap.css" t="Include" />
+              <e p="default.css" t="Include" />
+            </e>
+            <e p="img" t="Include">
+              <e p="logo-32.png" t="Include" />
+            </e>
+            <e p="js" t="Include">
+              <e p="bootstrap.min.js" t="Include" />
+              <e p="default.js" t="Include" />
+              <e p="jquery.min.js" t="Include" />
+            </e>
+          </e>
+          <e p="history.html" t="Include" />
+          <e p="index.html" t="Include" />
+          <e p="jobs.html" t="Include" />
+          <e p="menu.html" t="Include" />
+          <e p="triggers.html" t="Include" />
+        </e>
         <e p="QuartzFeature.cs" t="Include" />
         <e p="services" t="Include">
           <e p="dto" t="Include">
             <e p="JobDataMapSummary.cs" t="Include" />
+            <e p="JobExecutionHistory.cs" t="Include" />
             <e p="JobExecutionSummary.cs" t="Include" />
+            <e p="JobInstance.cs" t="Include" />
             <e p="JobKeySummary.cs" t="Include" />
             <e p="JobSummary.cs" t="Include" />
             <e p="SchedulerSummary.cs" t="Include" />
+            <e p="TriggerKeySummary.cs" t="Include" />
             <e p="TriggerSummary.cs" t="Include" />
           </e>
           <e p="MappingExtensions.cs" t="Include" />
           <e p="QuartzService.cs" t="Include" />
+          <e p="QuartzUIService.cs" t="Include" />
           <e p="req" t="Include">
+            <e p="GetQuartzHistory.cs" t="Include" />
+            <e p="GetQuartzHistoryResponse.cs" t="Include" />
             <e p="GetQuartzJob.cs" t="Include" />
             <e p="GetQuartzJobResponse.cs" t="Include" />
             <e p="GetQuartzJobs.cs" t="Include" />
             <e p="GetQuartzJobsResponse.cs" t="Include" />
             <e p="GetQuartzSummary.cs" t="Include" />
             <e p="GetQuartzSummaryResponse.cs" t="Include" />
+            <e p="GetQuartzTrigger.cs" t="Include" />
+            <e p="GetQuartzTriggerResponse.cs" t="Include" />
+            <e p="GetQuartzTriggers.cs" t="Include" />
+            <e p="GetQuartzTriggersResponse.cs" t="Include" />
             <e p="PostQuartzStatus.cs" t="Include" />
             <e p="PostQuartzStatusResponse.cs" t="Include" />
           </e>
@@ -59,7 +98,7 @@
         <e p="AppHost.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="netstandard" t="Include">
+          <e p="Debug" t="Include">
             <e p="netcoreapp2.0" t="Include">
               <e p="ServiceStackWithQuartzNetCore.AssemblyInfo.cs" t="Include" />
             </e>
@@ -74,6 +113,38 @@
             <e p="HelloJob.cs" t="Include" />
           </e>
         </e>
+        <e p="qui" t="Include">
+          <e p="_layout.html" t="Include" />
+          <e p="assets" t="Include">
+            <e p="css" t="Include">
+              <e p="bootstrap.css" t="Include" />
+              <e p="default.css" t="Include" />
+              <e p="open-iconic-bootstrap.min.css" t="Include" />
+            </e>
+            <e p="fonts" t="Include">
+              <e p="open-iconic.eot" t="Include" />
+              <e p="open-iconic.otf" t="Include" />
+              <e p="open-iconic.svg" t="Include" />
+              <e p="open-iconic.ttf" t="Include" />
+              <e p="open-iconic.woff" t="Include" />
+            </e>
+            <e p="img" t="Include">
+              <e p="logo-32.png" t="Include" />
+            </e>
+            <e p="js" t="Include">
+              <e p="bootstrap.min.js" t="Include" />
+              <e p="default.js" t="Include" />
+              <e p="jquery.min.js" t="Include" />
+            </e>
+          </e>
+          <e p="history.html" t="Include" />
+          <e p="index.html" t="Include" />
+          <e p="jobGroup.html" t="Include" />
+          <e p="jobRow.html" t="Include" />
+          <e p="jobs.html" t="Include" />
+          <e p="menu.html" t="Include" />
+          <e p="triggers.html" t="Include" />
+        </e>
         <e p="ServiceStackWithQuartzNetCore.csproj" t="IncludeRecursive" />
         <e p="Startup.cs" t="Include" />
       </e>
@@ -81,7 +152,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="MyServices.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="netstandard" t="Include">
+          <e p="Debug" t="Include">
             <e p="net452" t="Include">
               <e p="ServiceStackWithQuartz.ServiceInterface.AssemblyInfo.cs" t="Include" />
             </e>
@@ -96,7 +167,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Hello.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="netstandard" t="Include">
+          <e p="Debug" t="Include">
             <e p="net452" t="Include">
               <e p="ServiceStackWithQuartz.ServiceModel.AssemblyInfo.cs" t="Include" />
             </e>
@@ -110,7 +181,7 @@
       <e p="ServiceStackWithQuartz\ServiceStackWithQuartz.Tests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="netstandard" t="Include">
+          <e p="Debug" t="Include">
             <e p="net452" t="Include">
               <e p="ServiceStackWithQuartz.Tests.AssemblyInfo.cs" t="Include" />
             </e>

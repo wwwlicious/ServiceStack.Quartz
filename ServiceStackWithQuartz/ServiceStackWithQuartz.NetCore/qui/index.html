@@ -1,0 +1,79 @@
+<!--
+title: Scheduler
+-->
+
+<div class="container">
+    <div class="row pb-2">
+        <div class="col">
+            <h3>{{ Scheduler.SchedulerName | humanize }}</h3>
+        </div>
+        <div class="col text-right">
+            Status: {{ 'Started' | if(IsStarted) }} {{ 'Standby' | if(IsInStandbyMode) }} {{ 'Shutdown' | if(IsShutdown)
+            }}
+
+            <button type="button" class="btn btn-primary">
+                Jobs Run <span class="badge badge-light">{{ Scheduler.NumberOfJobsExecuted }}</span>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ 
+            { Executing: true }
+            | sendToGateway('GetQuartzJobs')
+            | toResults
+            | htmlDump({ caption: 'Execting Jobs' }) }}
+        </div>
+    </div>
+    {{ Scheduler | htmlDump({ className: "table table-striped" }) }}
+
+    <!-- badge for type / remote / cluster / threadpool / version -->
+    <!--
+    "scheduler": {
+    "inStandbyMode": false,
+    "jobStoreClustered": false,
+    "jobStoreSupportsPersistence": false,
+    "jobStoreType": "Quartz.Simpl.RAMJobStore",
+    "numberOfJobsExecuted": 24,
+    "runningSince": "/Date(1511738866285)/",
+    "schedulerInstanceId": "NON_CLUSTERED",
+    "schedulerName": "QuartzScheduler",
+    "schedulerRemote": false,
+    "schedulerType": "Quartz.Impl.StdScheduler",
+    "shutdown": false,
+    "started": true,
+    "threadPoolSize": 10,
+    "threadPoolType": "Quartz.Simpl.DefaultThreadPool",
+    "version": "3.0.0.0",}-->
+    </p>
+    <div class="row">
+        <!--
+        running since / uptime 
+        jobs executed (link to history)
+        -->
+    </div>
+    <div class="row">
+        {{ JobKeys
+        | htmlDump({ className: "table table-striped", caption: 'Jobs' }) }}
+    </div>
+    <div class="row">
+        {{ TriggerKeys
+        | htmlDump({ className: "table table-striped", caption: 'Triggers' }) }}
+    </div>
+
+    <!-- react binding to get api | serviceGateway style requests -->
+</div>
+
+{{ `
+<script>
+    //    $('#Name').keyup(function () {
+    //        var name = $('#Name').val();
+    //        if (name) {
+    //            $.getJSON('/hello/' + name, function (r) {
+    //                $('#result').html(r.result);
+    //            });
+    //        } else {
+    //            $('#result').html('');
+    //        }
+    //    });
+</script>` | appendTo: scripts }}

@@ -1,0 +1,29 @@
+
+<div class="card text-left">
+    <div class="card-header">
+        Group: {{ group | humanize }}
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col"></th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            {{ jobs 
+                | let({ job: 'it' })
+                | selectPartial: jobRow }}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!--
+{{ it | htmlDump }}-->

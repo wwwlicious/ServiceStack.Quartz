@@ -3,29 +3,24 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/. 
 namespace ServiceStack.Quartz
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.Reflection;
     using global::Quartz;
     using ServiceStack.Quartz.Funq;
-    using ServiceStack.Text;
+    using ServiceStack.VirtualPath;
 
     /// <summary>
     /// Sets up a quartz.net scheduler and scans assemblies to register IJob implementations by default
     /// Quartz.net standard app config is automatically used
     /// </summary>
-    public class QuartzFeature : IPlugin
+    public class QuartzFeature : IPlugin, IPreInitPlugin
     {
-        private Dictionary<string, string> _config;
-        internal Dictionary<JobKey, JobInstance> Jobs { get; private set; }
-
-        public QuartzFeature()
-        {
-            _config = new Dictionary<string, string>();
-            Jobs = new Dictionary<JobKey, JobInstance>();
-        }
+        private Dictionary<string, string> _config = new Dictionary<string, string>();
+        private string _apiRestPath = "quartz/api";
+        private string _uiPath = "quartz";
+        internal Dictionary<JobKey, JobInstance> Jobs { get; } = new Dictionary<JobKey, JobInstance>();
 
         /// <summary>
         /// Set quartz specific config overriding defaults
@@ -35,7 +30,7 @@ namespace ServiceStack.Quartz
         public NameValueCollection Config
         {
             get => _config.ToNameValueCollection();
-            set => _config = value?.ToStringDictionary();
+            set => _config = value.ToDictionary();
         }
 
         /// <summary>
@@ -44,10 +39,34 @@ namespace ServiceStack.Quartz
         public Assembly[] JobAssemblies { get; set; }
 
         /// <summary>
+        /// The Quartz Dashboard UI
+        /// </summary>
+        public bool EnableUI { get; set; } = true;
+
+        /// <summary>
         /// checks all assemblies for exported public IJob concrete types
         /// True by default
         /// </summary>
         public bool ScanAppHostAssemblies { get; set; } = true;
+
+        /// <summary>
+        /// Executed before any plugin is registered
+        /// </summary>
+        /// <param name="appHost"></param>
+        public void Configure(IAppHost appHost)
+        {
+            // in debug mode, use files, otherwise resources
+            // TODO remove before publishing
+            if (appHost.Config.DebugMode)
+            {
+                var fileSystemVirtualFiles = new FileSystemMapping(_uiPath, "C:\\Users\\scott\\RiderProjects\\ServiceStackWithQuartz\\ServiceStackWithQuartz\\ServiceStackWithQuartz.NetCore\\qui");
+                appHost.AddVirtualFileSources.Add(fileSystemVirtualFiles);
+            }
+            else
+            {
+                appHost.Config.EmbeddedResourceSources.Add(typeof(QuartzFeature).Assembly);
+            }
+        }
 
         /// <summary>
         /// Registers the plugin
@@ -67,17 +86,26 @@ namespace ServiceStack.Quartz
             // TODO list
             // Wire up common logging from Quartz -> SericeStack
             // Register service for getting info from scheduler
-            var atRestPath = "/quartz";
-            appHost.RegisterService(typeof(QuartzService), atRestPath);
+            appHost.RegisterService(typeof(QuartzService), _apiRestPath);
+            
+            // add endpoint link to metadata page
+            ConfigurePluginLinks(appHost);
             
             appHost.AfterInitCallbacks.Add(AfterInit);
 
-            // add endpoint link to metadata page
-            appHost.GetPlugin<MetadataFeature>()
-                .AddPluginLink(atRestPath.TrimStart('/'), "Quartz");
-
-            // add embedded pages for quartz dashboard
+            // add dispose delegate to shutdown scheduler
             appHost.OnDisposeCallbacks.Add(ShutdownQuartzScheduler);
+        }
+
+        private void ConfigurePluginLinks(IAppHost appHost)
+        {
+            appHost.GetPlugin<MetadataFeature>().AddPluginLink(_apiRestPath, "Quartz Api");
+
+            if (!EnableUI) return;
+            
+            // UI specific seutp
+            appHost.RegisterService(typeof(QuartzUIService));
+            appHost.GetPlugin<MetadataFeature>().AddPluginLink(_uiPath, "Quartz Dashboard");
         }
 
         /// <summary>
@@ -92,7 +120,7 @@ namespace ServiceStack.Quartz
         }
 
         /// <summary>
-        /// The scheduler is started after all the plugsin have been loaded
+        /// The scheduler is started after all the plugins have been loaded
         /// </summary>
         /// <param name="appHost"></param>
         public void AfterInit(IAppHost appHost)
@@ -113,6 +141,7 @@ namespace ServiceStack.Quartz
             }
 
             scheduler.Start();
+            scheduler.ListenerManager.AddJobListener(new InMemoryJobListener());
         }
 
         /// <summary>

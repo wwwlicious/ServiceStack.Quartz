@@ -6,6 +6,7 @@ namespace ServiceStackWithQuartz.NetCore
     using Quartz;
     using ServiceStack;
     using ServiceStack.Quartz;
+    using ServiceStack.Text;
     using ServiceStackWithQuartz.ServiceInterface;
 
     public class AppHost : AppHostBase
@@ -25,6 +26,10 @@ namespace ServiceStackWithQuartz.NetCore
         /// <param name="container"></param>
         public override void Configure(Container container)
         {
+            SetConfig(new HostConfig { 
+                DebugMode = AppSettings.Get("DebugMode", Env.IsWindows),
+            });
+
             // override config
             var quartzConfig = ConfigureQuartz();
 
@@ -34,31 +39,31 @@ namespace ServiceStackWithQuartz.NetCore
             Plugins.Add(new PostmanFeature());
 
             // or you can register the plugin with custom config source
-            //Plugins.AddIfNotExists(new QuartzFeature { Config = quartzConfig });
+            Plugins.AddIfNotExists(new QuartzFeature { Config = quartzConfig });
 
             // or you can register plugin with custom job assemblies
-//            Plugins.AddIfNotExists(new QuartzFeature
-//            {
-//                ScanAppHostAssemblies = false,
-//                JobAssemblies = new[] { typeof(HelloJob).Assembly, typeof(AppHost).Assembly }
-//            });
+            Plugins.AddIfNotExists(new QuartzFeature
+            {
+                ScanAppHostAssemblies = false,
+                JobAssemblies = new[] { typeof(HelloJob).Assembly, typeof(AppHost).Assembly }
+            });
 
             // now you can setup a job to run with a trigger
-            quartzFeature.RegisterJob<HelloJob>(
-                trigger =>
-                trigger.WithSimpleSchedule(s =>
-                    s.WithInterval(TimeSpan.FromMinutes(1))
-                     .RepeatForever()
-                )
-                .Build()
-            );
-            
-            // or setup a job to run with a trigger and some data
             quartzFeature.RegisterJob<HelloJob>(
                 trigger =>
                     trigger.WithSimpleSchedule(s =>
                             s.WithInterval(TimeSpan.FromMinutes(1))
                                 .RepeatForever()
+                        )
+                        .Build()
+            );
+
+            // or setup a job to run with a trigger and some data
+            quartzFeature.RegisterJob<HelloJob>(
+                trigger =>
+                    trigger.WithSimpleSchedule(s =>
+                            s.WithIntervalInMinutes(1)
+                                .WithRepeatCount(10)
                         )
                         .Build(),
                 builder => builder.UsingJobData("Name", "Bob").Build()
@@ -75,7 +80,6 @@ namespace ServiceStackWithQuartz.NetCore
             var jobData = JobBuilder.Create<HelloJob>().UsingJobData("Name", "Sharon").Build();
             quartzFeature.RegisterJob<HelloJob>(everyHourTrigger);
             quartzFeature.RegisterJob<HelloJob>(everyHourTrigger, jobData);
-            
         }
 
         /// <summary>

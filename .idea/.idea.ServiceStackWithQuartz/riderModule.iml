@@ -7,5 +7,11 @@
     <content url="file://$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/_common/xunit.runner.visualstudio.testadapter.dll" />
     <content url="file://$MODULE_DIR$/../.." />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jquery-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="bootstrap-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="bootstrap-datepicker-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="bootstrap-table-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="jQuery-2.0.0" level="application" />
+    <orderEntry type="library" name="Modernizr-2.6.2" level="application" />
   </component>
 </module>

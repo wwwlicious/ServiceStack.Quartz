@@ -1,6 +1,6 @@
 namespace ServiceStack.Quartz
 {
-    [Route("/quartz")]
+    [Route("/quartz/api")]
     public class GetQuartzSummary : IGet, IReturn<GetQuartzSummaryResponse>
     {
     }
