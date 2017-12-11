@@ -13,7 +13,7 @@ BuildParameters.SetParameters(context: Context,
                             shouldPostToGitter: false,
                             shouldPostToSlack: false,
                             shouldPostToTwitter: false,
-                            shouldRunDupFinder: false,
+                            shouldRunDupFinder: false
                             );
 
 BuildParameters.PrintParameters(Context);
