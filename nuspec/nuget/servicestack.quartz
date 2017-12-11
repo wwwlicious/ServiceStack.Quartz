@@ -6,7 +6,7 @@
     <title>ServiceStack.Quartz</title>
     <authors>Scott Mackay (@wwwlicious)</authors>
     <owners>Scott Mackay (@wwwlicious)</owners>
-    <iconUrl></iconUrl>
+    <iconUrl>https://servicestack.net/img/logo-32.png</iconUrl>
     <projectUrl>https://github.com/wwwlicious/ServiceStack.Quartz</projectUrl>
     <licenseUrl>https://opensource.org/licenses/MPL-2.0</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
