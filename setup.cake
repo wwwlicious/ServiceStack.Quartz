@@ -12,7 +12,8 @@ BuildParameters.SetParameters(context: Context,
                             appVeyorAccountName: "wwwlicious",
                             shouldPostToGitter: false,
                             shouldPostToSlack: false,
-                            shouldPostToTwitter: false
+                            shouldPostToTwitter: false,
+                            shouldRunDupFinder: false,
                             );
 
 BuildParameters.PrintParameters(Context);
