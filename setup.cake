@@ -14,7 +14,8 @@ BuildParameters.SetParameters(context: Context,
                             shouldPostToSlack: false,
                             shouldPostToTwitter: false,
                             shouldRunDupFinder: false,
-                            shouldRunInspectCode: false
+                            shouldRunInspectCode: false,
+                            shouldDeployGraphDocumentation: false
                             );
 
 BuildParameters.PrintParameters(Context);
