@@ -1,6 +1,7 @@
-.navbar-logo {
+.navbar-brand img {
     vertical-align: text-bottom;
-    height: 30px;
+    
+    display: inline-block;
 }
 
 .ss-genoa {
