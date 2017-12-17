@@ -1,0 +1,36 @@
+.navbar-logo {
+    vertical-align: text-bottom;
+    height: 30px;
+}
+
+.ss-genoa {
+    fill: rgb(166, 226, 46);
+}
+
+.ss-mainsail {
+    fill: #fff;
+}
+
+.main {
+    margin-bottom: 50px;
+}
+
+#logo-inverse {
+    vertical-align: inherit;
+}
+
+.background {
+    background: url("images/splash.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    background-color: transparent;
+}
+
+.jumbotron {
+    opacity: 0.9;
+}

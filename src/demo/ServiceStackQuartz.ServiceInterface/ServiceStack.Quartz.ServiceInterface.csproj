@@ -5,9 +5,9 @@
     <Configurations>Debug;Release;netstandard</Configurations>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ServiceStack.Server" Version="5.0.*" />
+    <ProjectReference Include="..\ServiceStackQuartz.ServiceModel\ServiceStack.Quartz.ServiceModel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceStackQuartz.ServiceModel\ServiceStack.Quartz.ServiceModel.csproj" />
+    <PackageReference Include="ServiceStack.Server" Version="5.0.0" />
   </ItemGroup>
 </Project>

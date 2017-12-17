@@ -1,12 +1,10 @@
-# Configuration
-
-There is support for [Quartz Configuration](http://www.quartz-scheduler.net/documentation/quartz-2.x/quick-start.html) ("Configuration" section)
+<!--title: Configuration-->
 
 ## From AppSettings 
 
 By default, the plugin will use any configuration keys starting with `quartz.` available from ServiceStack's `IAppSettings`.
 
-The following for example will configure Quartz.Net's threadpool settings
+The following example will configure Quartz.Net's threadpool settings
 
 ```xml
 <appsettings>
@@ -14,6 +12,7 @@ The following for example will configure Quartz.Net's threadpool settings
     <add key="quartz.threadPool.threadCount" value="5" />
 </appsettings>
 ```
+To learn more about the available Quartz configuration settings see the [Quartz.Net configuration docs](https://www.quartz-scheduler.net/documentation/quartz-2.x/quick-start.html#configuration)
 
 ## From code
 
