@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="/content/servicestack.quartz.css" ?>
+<svg class="logo" xmlns="http://www.w3.org/2000/svg" width="102" height="80" viewBox="0 0 356.000000 280.000000"
+    preserveAspectRatio="xMidYMid meet">
+    <image src="img/logo.png" width="102" height="80" />
+    <metadata>Logo from ServiceStack. SVG Created by Scott Mackay @wwwlicious.</metadata>
+    <g transform="translate(0.000000,280.000000) scale(0.100000,-0.100000)" class="ss-genoa">
+      <path d="M1110 2405 c0 -2 18 -33 41 -67 54 -85 111 -206 143 -306 28 -90 66
+-264 66 -309 1 -26 11 -33 120 -92 304 -161 587 -387 798 -634 150 -177 305
+-437 372 -624 l23 -63 244 0 245 0 -6 35 c-12 61 -77 246 -132 374 -239 556
+-680 1054 -1219 1378 -118 71 -265 146 -396 201 -102 44 -299 114 -299 107z" />
+    </g>
+    <g transform="translate(0.000000,280.000000) scale(0.100000,-0.100000)" class="ss-mainsail">
+      <path d="M950 1534 c104 -136 150 -261 157 -434 10 -232 -60 -412 -222 -575
+-64 -64 -100 -90 -177 -129 -56 -28 -129 -56 -175 -67 -76 -17 -53 -17 1000
+-18 1008 -1 1077 0 1077 16 0 9 -27 71 -60 138 -226 454 -702 831 -1315 1041
+-108 37 -307 94 -330 94 -3 0 17 -30 45 -66z" />
+    </g>
+  </svg>

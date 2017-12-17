@@ -1,0 +1,106 @@
+<!--Title:ServiceStack.Quartz-->
+
+<!DOCTYPE html>
+<html lang="en" class="background">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="generator" content="Bootply"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel=icon href="/content/favicon.ico">
+    <title>ServiceStack.Quartz</title>
+    <link href="/ServiceStack.Quartz/content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+    <link href="/ServiceStack.Quartz/content/prism.css" rel="stylesheet" type="text/css" />
+    <link href="/ServiceStack.Quartz/content/servicestack.quartz.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<a href="https://github.com/wwwlicious/ServiceStack.Quartz"><img
+    style="z-index: 5000; position: absolute; top: 0; right: 0; border: 0;"
+    src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67"
+    alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/ServiceStack.Quartz" class="navbar-brand">
+                <object type="image/svg+xml" data="/content/images/logo.svg" class="navbar-logo"></object>
+                ServiceStack<span class="token string">.Quartz</span></a>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="/ServiceStack.Quartz/documentation/getting_started">Getting Started</a>
+                </li>
+                <li>
+                    <a href="/ServiceStack.Quartz/documentation">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://github.com/wwwlicious/ServiceStack.Quartz/blob/master/documentation/splash.htm"
+                       class="text-muted"><i class="fa fa-github"></i> Edit on GitHub</a>
+                </li>
+            </ul>
+            <div class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input id="search" type="search" class="form-control" placeholder="Search">
+                </div>
+            </div>
+        </nav>
+
+    </div>
+</nav>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container jumbo-content">
+        <h1><img id="logo-inverse" src="/content/images/logo.png"/> ServiceStack<span
+            class="token string">.Quartz</span>
+        </h1>
+        <p>Easy job scheduling for ServiceStack.</p>
+        <p><a class="btn btn-primary btn-lg" href="/ServiceStack.Quartz/documentation" role="button">Learn more &raquo;</a>
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1><a href="http://servicestack.net">ServiceStack</a></h1>
+            Thoughtfully architected, obscenely fast, thoroughly enjoyable web services for all
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h1><a href="https://www.quartz-scheduler.net">Quartz.Net</a></h1>
+            Quartz.NET is a full-featured, open source job scheduling system that can be used from smallest apps to
+            large scale enterprise systems.
+            <hr>
+        </div>
+    </div>
+</div> <!-- /container -->
+
+<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/ServiceStack.Quartz/content/embed.js"></script>
+
+<script>
+    $('#search').keyup(function (e) {
+        if (e.keyCode === 13) {
+            var search = $('#search').val();
+
+            var url = 'https://www.google.com/#q=site:http://servicestack-quartz.github.io ' + search;
+            url = encodeURI(url);
+
+            window.location.href = url;
+
+            e.stopPropagation();
+            if (e.cancelBubble !== null) e.cancelBubble = true;
+            return false;
+        }
+    });
+</script>
+
+</body>
+</html>
