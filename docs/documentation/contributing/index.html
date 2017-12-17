@@ -122,10 +122,10 @@ interests of politeness could all submissions please try to adhere to the follow
     </div><!--/row-->
 </div><!--/container-->
 
-<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     $('#search').keyup(function (e) {
-        if (e.keyCode === 13) {
+        if (e.keyCode == 13) {
             var search = $('#search').val();
 
             var url = 'https://www.google.com/#q=site:http://servicestack-quartz.github.io ' + search;
@@ -134,7 +134,7 @@ interests of politeness could all submissions please try to adhere to the follow
             window.location.href = url;
 
             e.stopPropagation();
-            if (e.cancelBubble !== null) e.cancelBubble = true;
+            if (e.cancelBubble != null) e.cancelBubble = true;
             return false;
         }
 
@@ -146,8 +146,8 @@ interests of politeness could all submissions please try to adhere to the follow
 
 
 <foot>
-    <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="/ServiceStack.Quartz/content/embed.js"></script>
     <script type="text/javascript" src="/ServiceStack.Quartz/content/prism.js"></script>
