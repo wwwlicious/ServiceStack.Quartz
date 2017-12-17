@@ -87,7 +87,7 @@
 
 <script>
     $('#search').keyup(function (e) {
-        if (e.keyCode === 13) {
+        if (e.keyCode == 13) {
             var search = $('#search').val();
 
             var url = 'https://www.google.com/#q=site:http://servicestack-quartz.github.io ' + search;
@@ -96,7 +96,7 @@
             window.location.href = url;
 
             e.stopPropagation();
-            if (e.cancelBubble !== null) e.cancelBubble = true;
+            if (e.cancelBubble != null) e.cancelBubble = true;
             return false;
         }
     });
