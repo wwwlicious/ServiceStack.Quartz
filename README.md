@@ -1,4 +1,6 @@
-# ServiceStack.Quartz  [![Build status](https://ci.appveyor.com/api/projects/status/knti9n4cd6lmtm5x/branch/master?svg=true)](https://ci.appveyor.com/project/wwwlicious/servicestack-quartz/branch/master)
+# ServiceStack.Quartz
+
+[![Build status](https://ci.appveyor.com/api/projects/status/knti9n4cd6lmtm5x/branch/master?svg=true)](https://ci.appveyor.com/project/wwwlicious/servicestack-quartz/branch/master) [![NuGet version](https://badge.fury.io/nu/servicstack.quartz.svg)](https://badge.fury.io/nu/servicstack.quartz)
 
 > Easy job scheduling for ServiceStack.
 
