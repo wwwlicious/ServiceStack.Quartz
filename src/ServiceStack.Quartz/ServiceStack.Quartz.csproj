@@ -3,21 +3,44 @@
     <Copyright>Copyright © 2017</Copyright>
     <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <Configurations>Debug;Release</Configurations>
+    <Title>ServiceStack.Quartz</Title>
+    <Description>Easy job scheduling for ServiceStack</Description>
+    <Authors>Scott Mackay (@wwwlicious)</Authors>
+    <Owners>Scott Mackay (@wwwlicious)</Owners>
+    <Copyright>Copyright (c) wwwlicious 2016 - Present</Copyright>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <PackageId>ServiceStack.Quartz</PackageId>
+    <Version>$(VersionNumber)</Version>
+    <PackageOutputPath>$(PackageOutputPath)</PackageOutputPath>
+    <PackageLicenseUrl>https://opensource.org/licenses/MPL-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/wwwlicious/ServiceStack.Quartz</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/wwwlicious/ServiceStack.Quartz/blob/master/documentation/content/images/logo.png</PackageIconUrl>
+    <ReleaseNotes>https://github.com/wwwlicious/ServiceStack.Quartz/releases</ReleaseNotes>
+    <PackageTags>servicestack quartz quartznet job schedule plugin</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+    <RepositoryUrl>https://github.com/wwwlicious/ServiceStack.Quartz</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NET452;</DefineConstants>
+    <DocumentationFile>bin\Debug\net452\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2_0|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NET452</DefineConstants>
+    <DocumentationFile>bin\Release\net452\ServiceStack.Quartz.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;</DefineConstants>
+    <DocumentationFile>bin\Debug\netstandard2.0\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0</DefineConstants>
+    <DocumentationFile>bin\Release\netstandard2.0\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Quartz" Version="3.0.0-beta1" />
     <PackageReference Include="ServiceStack.Server" Version="5.0.0" />
   </ItemGroup>
-  <!--<ItemGroup>
-    <EmbeddedResource Include="quartz-ui\**\*.*" Exclude="bin\**;obj\**;@(EmbeddedResource)" />
-  </ItemGroup>-->
 </Project>

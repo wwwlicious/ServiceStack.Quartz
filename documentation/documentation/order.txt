@@ -4,4 +4,6 @@ configuration
 jobs
 jobdata
 triggers
+logging
+api
 contributing

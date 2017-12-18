@@ -1,4 +1,6 @@
-# ServiceStack.Quartz  [![Build status](https://ci.appveyor.com/api/projects/status//branch/master?svg=true)](https://ci.appveyor.com/project/wwwlicious/servicestack.quartz/branch/master)
+# ServiceStack.Quartz  [![Build status](https://ci.appveyor.com/api/projects/status/knti9n4cd6lmtm5x/branch/master?svg=true)](https://ci.appveyor.com/project/wwwlicious/servicestack-quartz/branch/master)
+
+> Easy job scheduling for ServiceStack.
 
 ServiceStack.Quartz is a plugin for [ServiceStack](https://servicestack.net/) that provides simple integration with [Quartz.Net](https://www.quartz-scheduler.net/).
 
@@ -8,75 +10,21 @@ ServiceStack.Quartz is a plugin for [ServiceStack](https://servicestack.net/) th
 |---------|-----------|
 |.Net Framework|4.5.2|
 |.Net Standard |2.0 |
-|ServiceStack|4.5.14|
+|ServiceStack|5.x|
+|Quartz.Net | 3.x |
 
-## Dependencies
+## Getting Started
 
-* Quartz.Net v3.x
-* ServiceStack v5.x
+The plugin is available via [NuGet](https://www.nuget.org/packages/ServiceStack.Quartz/)
 
-## Quick Start
-
-Install the [nuget package](https://www.nuget.org/packages/ServiceStack.Quartz/) into your ServiceStack AppHost project
- 
 ```powershell
 install-package ServiceStack.Quartz
 ```
 
-Then inside your AppHost, register the plugin and a job trigger.
+If you want to fix a bug or just want to tinker with an idea, we love receiving pull requests!
 
-```csharp
-// the plugin setup
-public class AppHost : AppHostBase
-{
-    public void Configure(Container container)
-    {
-        var quartzFeature = new QuartzFeature();
+For information on getting starting and using the plugin, see the [documentation site](https://wwwlicious.github.io/ServiceStack.Quartz/)
 
-        // create a simple job trigger to repeat every minute 
-        quartzFeature.RegisterJob<MyJob>(
-                                     trigger =>
-                                     trigger.WithSimpleSchedule(s =>
-                                         s.WithInterval(TimeSpan.FromMinutes(1))
-                                          .RepeatForever()
-                                     )
-                                     .Build()
-                                 );
-
-        Plugins.Add(quartzFeature);
-    }
-}
-
-// a basic job
-public class MyJob : IJob 
-{
-    public Task Execute(IJobExecutionContext context)
-    {
-        // job code goes here
-
-        return context.AsTaskResult();
-    }
-}
-```
-
-## Defaults
-
-* Jobs - By default, the plugin will scan all assemblies for implementations of Quartz.Net's `IJob` interface.
-* Configuration - By default, the plugin will read the standard Quartz.Net's configuration (if specified).
-* Lifecycle - By default, the scheduler is started after the the `AppHost` has initialised and shutdown when the `AppHost` is disposed.
-
-## Api
-
-The plugin exposes an API where you can view and control the scheduler, jobs and triggers.
-
-If you have the metadata plugin enabled, a 'Quartz' link will be available on the default metadata page.
-
-* Scheduler API - *http://{hostaddress}:{port}/quartz/api*
-
-## Further documentation
-
-* [Configuration](docs/configuration.md)
-* [Registration](docs/registration.md)
 
 ## Credits
 
@@ -85,4 +33,4 @@ If you have the metadata plugin enabled, a 'Quartz' link will be available on th
 
 ## Contributions
 
-Before contributing, please read [Contributions.md](docs/contributions.md)
+Before contributing, please read the [Contribution Guidelines](https://wwwlicious.github.io/ServiceStack.Quartz/documentation/contributing/)
