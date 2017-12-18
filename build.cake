@@ -33,6 +33,7 @@ var gitVersionResults = GitVersion(new GitVersionSettings { UpdateAssemblyInfo =
 var semVersion = gitVersionResults.MajorMinorPatch + "." + buildNumber;
 var solutionFile = new FilePath("ServiceStack.Quartz.sln");
 var solution = ParseSolution(solutionFile);
+var docFile = "docs.csproj";
 
 Information("Semver Version -> {0}", semVersion);
 
@@ -91,7 +92,19 @@ Task("__Test")
                 DotNetCoreTest(project.Path.ToString());
             }
         }
-});   
+});
+
+Task("RunDocs")
+.Does(() => {
+    DotNetCoreRestore(docFile);
+    DotNetCoreTool(docFile, "stdocs", "run");
+});
+
+Task("UpdateDocs")
+.Does(() => {
+    DotNetCoreRestore(docFile);
+    DotNetCoreTool(docFile, "stdocs", "export ./docs ProjectWebsite -p ServiceStack.Quartz");
+});
 
 Task("Build")
     .IsDependentOn("__Clean")

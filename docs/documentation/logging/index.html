@@ -6,7 +6,7 @@
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel=icon href="/ServiceStack.Quartz/content/images/favicon.ico">
-    <title>ServiceStack.Quartz - Getting Started</title>
+    <title>ServiceStack.Quartz - Logging</title>
     <link href="/ServiceStack.Quartz/content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/ServiceStack.Quartz/content/prism.css" rel="stylesheet" type="text/css" />
     <link href="/ServiceStack.Quartz/content/theme.css" rel="stylesheet" type="text/css" />
@@ -40,9 +40,9 @@
                 </li>
                 <li>
                     
-                <li><a href="/ServiceStack.Quartz/documentation" title="Documentation">Previous</a></li>
+                <li><a href="/ServiceStack.Quartz/documentation/triggers" title="Job Tiggers">Previous</a></li>
                 
-                <li><a href="/ServiceStack.Quartz/documentation/configuration" title="Configuration">Next</a></li>
+                <li><a href="/ServiceStack.Quartz/documentation/api" title="Api">Next</a></li>
             </ul>
             <div class="navbar-form navbar-left" role="search">
                 <div class="form-group">
@@ -57,7 +57,7 @@
 
 <div class="container">
     <nav class="navbar-inverse">
-        <ol class="breadcrumb"><li><a href="/ServiceStack.Quartz/">ServiceStack.Quartz</a></li><li><a href="/ServiceStack.Quartz/documentation">Documentation</a></li><li class="active">Getting Started</li></ol>
+        <ol class="breadcrumb"><li><a href="/ServiceStack.Quartz/">ServiceStack.Quartz</a></li><li><a href="/ServiceStack.Quartz/documentation">Documentation</a></li><li class="active">Logging</li></ol>
     </nav>
 </div>
 
@@ -73,46 +73,33 @@
             <ul class="nav nav-stacked affix" id="sidebar">
 
             <h3 class="no-margin">Next</h3>
-            <p><a href="/ServiceStack.Quartz/documentation/configuration">Configuration</a></p>
-            <h3 class="no-margin">Previous</h3><p><a href="/ServiceStack.Quartz/documentation">Documentation</a></p>
+            <p><a href="/ServiceStack.Quartz/documentation/api">Api</a></p>
+            <h3 class="no-margin">Previous</h3><p><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a></p>
 
             </ul>
         </div><!--/left-->
 
         <!--right-->
         <div class="col-md-9">
-            <h1>Getting Started<a
-                href="https://github.com/wwwlicious/ServiceStack.Quartz/blob/master/documentation/documentation/getting_started.md"
+            <h1>Logging<a
+                href="https://github.com/wwwlicious/ServiceStack.Quartz/blob/master/documentation/documentation/logging/index.md"
                 class="text-muted small pull-right" style="margin-top: 10px"><i class="fa fa-github"></i> Edit on GitHub</a>
             </h1>
 
             <hr/>
 
             <div id="main-pane">
-                <!--title: Getting Started-->
-<div class="alert-warning alert"><p><strong>Note!</strong>
-Uses Quartz.Net v3.x which requires net 4.52 and above.</p>
-</div>
-<p>Install the <a href="https://www.nuget.org/packages/ServiceStack.Quartz/">nuget package</a> into your ServiceStack <code>AppHost</code> project</p>
-<pre><code class="language-powershell">
-install-package ServiceStack.Quartz
+                <!--title: Logging-->
+<p>If you require logging during your <code>IJob</code> executions, you can simply use the default <a href="http://docs.servicestack.net/logging">ServiceStack logging</a></p>
+<pre><code class="language-csharp">ILog log = LogManager.GetLogger(GetType());
 
+log.Debug(&quot;Debug Event Log Entry.&quot;);
+log.Warn(&quot;Warning Event Log Entry.&quot;);
 </code></pre>
-<p>Create a basic job</p>
-<pre><code class="language-csharp">&#xD;&#xA;public class MyJob : IJob&#xD;&#xA;{&#xD;&#xA;    public Task Execute(IJobExecutionContext context)&#xD;&#xA;    {&#xD;&#xA;        // ... job code goes here&#xD;&#xA;        return context.AsTaskResult();&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;</code></pre>
-<p>Then inside your AppHost, register the plugin and a job trigger.</p>
-<pre><code class="language-csharp">&#xD;&#xA;public class AppHostSample : AppHostBase&#xD;&#xA;{&#xD;&#xA;    public AppHostSample() : base(&quot;Quartz Sample&quot;, typeof(MyServices).Assembly)&#xD;&#xA;    {&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    public override void Configure(Container container)&#xD;&#xA;    {&#xD;&#xA;        var quartzFeature = new QuartzFeature();&#xD;&#xA;&#xD;&#xA;        // create a simple job trigger to repeat every minute &#xD;&#xA;        quartzFeature.RegisterJob&lt;MyJob&gt;(&#xD;&#xA;            trigger =&gt;&#xD;&#xA;                trigger.WithSimpleSchedule(s =&gt;&#xD;&#xA;                        s.WithInterval(TimeSpan.FromMinutes(1))&#xD;&#xA;                            .RepeatForever()&#xD;&#xA;                    )&#xD;&#xA;                    .Build()&#xD;&#xA;        );&#xD;&#xA;&#xD;&#xA;        // register the plugin&#xD;&#xA;        Plugins.Add(quartzFeature);&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;</code></pre>
-<p>That's it. The job will now execute every minute while the apphost is running.</p>
-<h1 id="defaults">Defaults</h1>
-<h2 id="jobs">Jobs</h2>
-<p>By default, the plugin will scan all assemblies for implementations of Quartz.Net's <code>IJob</code> interface and register them with <a href="http://docs.servicestack.net/ioc">ServiceStack's IoC container</a>.</p>
-<p>Your <code>IJob</code> implementations will use the IoC container to resolve any constructor or property injection dependencies automatically.</p>
-<h2 id="configuration">Configuration</h2>
-<p>By default, the plugin will use the standard Quartz.Net's configuration (if specified).</p>
-<h2 id="lifecycle">Lifecycle</h2>
-<p>By default, the scheduler is started after the the <code>AppHost</code> has initialised and shutdown when the <code>AppHost</code> is disposed.</p>
-<h2 id="persistence">Persistence</h2>
-<p>By default, there is no scheduler persistence for Jobs. This can be configured using the standard Quartz.Net configuration options.</p>
+<div class="alert-info alert"><p><strong>Note!</strong>
+Quartz.Net v3.x and above now uses <a href="https://github.com/damianh/LibLog">LibLog</a> for it's own internal logging
+which will be picked up automatically by most common logging libraries and should appear in the ServiceStack logs by default.</p>
+</div>
 
             </div>
 
@@ -120,12 +107,12 @@ install-package ServiceStack.Quartz
 
             <nav>
 				        <span>
-				        	<strong>Previous: </strong><a href="/ServiceStack.Quartz/documentation">Documentation</a>
+				        	<strong>Previous: </strong><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a>
 
 				        </span>
                 <span class="pull-right">
 
-				        	<strong>Next: </strong><a href="/ServiceStack.Quartz/documentation/configuration">Configuration</a>
+				        	<strong>Next: </strong><a href="/ServiceStack.Quartz/documentation/api">Api</a>
 
 				        </span>
             </nav>
