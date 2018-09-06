@@ -68,13 +68,19 @@ namespace ServiceStack.Quartz.NetCore
                         .Build(),
                 builder => builder.UsingJobData("Name", "Bob").Build()
             );
+            
+            // cron schedule trigger
+            var cronTrigger = TriggerBuilder.Create()
+                .WithCronSchedule("0 0 0/1 1/1 * ? *")
+                .Build();
+            quartzFeature.RegisterJob<HelloJob>(cronTrigger);
 
             // you can setup jobs with data and triggers however you like
-            // lets create a trigger with our preferred identity
+            // this lets create a trigger with our preferred identity
             var everyHourTrigger = TriggerBuilder.Create()
                 .WithDescription("This is my trigger!")
                 .WithIdentity("everyHour", "Continuous")
-                .WithCronSchedule("0 0 0/1 1/1 * ? *")
+                .WithDailyTimeIntervalSchedule(x => x.OnMondayThroughFriday().WithIntervalInHours(1))
                 .Build();
 
             var jobData = JobBuilder.Create<HelloJob>().UsingJobData("Name", "Sharon").Build();
