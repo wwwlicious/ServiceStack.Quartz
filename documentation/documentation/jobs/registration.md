@@ -1,10 +1,10 @@
 <!--title: Job Registration-->
 
-## Jobs
+## Automatic job registration
 
 There are two options for registering Jobs.
 
-By default, the plugin will scan all the application's assemblies for implementations of the `IJob` interface and register them with Quartz.Net.
+By default, the plugin will scan all the application's assemblies for implementations of the `IJob` interface and register them with ServiceStack's IoC container.
 
 ```csharp
 public class AppHost : AppHostBase
@@ -16,7 +16,7 @@ public class AppHost : AppHostBase
 }
 ```
 
-### Explicitly registering Job Assesmblies
+## Manual job registration
 
 If you need to explicitly register your assemblies containing your `IJob` implementations, you can 
 specify the assemblies.
@@ -38,9 +38,6 @@ public class AppHost : AppHostBase
 }
 ```
 
-## Job Data
+Registration will take care of creating instances of your Jobs, including injecting any dependencies into them, but without triggers, your jobs will never run.
 
-
-## Triggers
-
-TODO 
+Lets see how we schedule our jobs to run next...

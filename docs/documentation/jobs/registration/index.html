@@ -42,7 +42,7 @@
                     
                 <li><a href="/ServiceStack.Quartz/documentation/jobs" title="Jobs">Previous</a></li>
                 
-                <li><a href="/ServiceStack.Quartz/documentation/jobdata" title="Job Data">Next</a></li>
+                <li><a href="/ServiceStack.Quartz/documentation/triggers" title="Job Tiggers">Next</a></li>
             </ul>
             <div class="navbar-form navbar-left" role="search">
                 <div class="form-group">
@@ -73,7 +73,7 @@
             <ul class="nav nav-stacked affix" id="sidebar">
 
             <h3 class="no-margin">Next</h3>
-            <p><a href="/ServiceStack.Quartz/documentation/jobdata">Job Data</a></p>
+            <p><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a></p>
             <h3 class="no-margin">Previous</h3><p><a href="/ServiceStack.Quartz/documentation/jobs">Jobs</a></p>
 
             </ul>
@@ -90,9 +90,9 @@
 
             <div id="main-pane">
                 <!--title: Job Registration-->
-<h2 id="jobs">Jobs</h2>
+<h2 id="automatic-job-registration">Automatic job registration</h2>
 <p>There are two options for registering Jobs.</p>
-<p>By default, the plugin will scan all the application's assemblies for implementations of the <code>IJob</code> interface and register them with Quartz.Net.</p>
+<p>By default, the plugin will scan all the application's assemblies for implementations of the <code>IJob</code> interface and register them with ServiceStack's IoC container.</p>
 <pre><code class="language-csharp">public class AppHost : AppHostBase
 {
     public override void Configure(Container container)
@@ -101,7 +101,7 @@
     }
 }
 </code></pre>
-<h3 id="explicitly-registering-job-assesmblies">Explicitly registering Job Assesmblies</h3>
+<h2 id="manual-job-registration">Manual job registration</h2>
 <p>If you need to explicitly register your assemblies containing your <code>IJob</code> implementations, you can
 specify the assemblies.</p>
 <p><strong>NOTE: You must set the plugin property <code>ScanAppHostAssemblies</code> to false</strong></p>
@@ -117,9 +117,8 @@ specify the assemblies.</p>
     }
 }
 </code></pre>
-<h2 id="job-data">Job Data</h2>
-<h2 id="triggers">Triggers</h2>
-<p>TODO</p>
+<p>Registration will take care of creating instances of your Jobs, including injecting any dependencies into them, but without triggers, your jobs will never run.</p>
+<p>Lets see how we schedule our jobs to run next...</p>
 
             </div>
 
@@ -132,7 +131,7 @@ specify the assemblies.</p>
 				        </span>
                 <span class="pull-right">
 
-				        	<strong>Next: </strong><a href="/ServiceStack.Quartz/documentation/jobdata">Job Data</a>
+				        	<strong>Next: </strong><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a>
 
 				        </span>
             </nav>

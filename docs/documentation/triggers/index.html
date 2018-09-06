@@ -40,9 +40,9 @@
                 </li>
                 <li>
                     
-                <li><a href="/ServiceStack.Quartz/documentation/jobdata" title="Job Data">Previous</a></li>
+                <li><a href="/ServiceStack.Quartz/documentation/jobs" title="Jobs">Previous</a></li>
                 
-                <li><a href="/ServiceStack.Quartz/documentation/logging" title="Logging">Next</a></li>
+                <li><a href="/ServiceStack.Quartz/documentation/jobdata" title="Job Data">Next</a></li>
             </ul>
             <div class="navbar-form navbar-left" role="search">
                 <div class="form-group">
@@ -73,8 +73,8 @@
             <ul class="nav nav-stacked affix" id="sidebar">
 
             <h3 class="no-margin">Next</h3>
-            <p><a href="/ServiceStack.Quartz/documentation/logging">Logging</a></p>
-            <h3 class="no-margin">Previous</h3><p><a href="/ServiceStack.Quartz/documentation/jobdata">Job Data</a></p>
+            <p><a href="/ServiceStack.Quartz/documentation/jobdata">Job Data</a></p>
+            <h3 class="no-margin">Previous</h3><p><a href="/ServiceStack.Quartz/documentation/jobs">Jobs</a></p>
 
             </ul>
         </div><!--/left-->
@@ -90,7 +90,40 @@
 
             <div id="main-pane">
                 <!--title: Job Tiggers-->
-<p>Job aren't much use with triggers. These tell Quartz when to run the jobs.</p>
+<p>Job aren't much use with triggers. These tell Quartz when to run the jobs.
+You configure these in ServiceStack's <code>AppHost</code> configuration.</p>
+<pre><code class="language-csharp">// first let's create the plugin and add it to our apphost
+var quartzFeature = new QuartzFeature();
+Plugins.Add(quartzFeature);
+
+// now let's create a trigger to run HelloJob every minute
+quartzFeature.RegisterJob&lt;HelloJob&gt;(
+    trigger =&gt;
+        trigger
+        .WithSimpleSchedule(s =&gt; s.WithInterval(TimeSpan.FromMinutes(1)).RepeatForever())
+        .Build()
+);
+</code></pre>
+<p>You can create triggers separately if you want to assign them to mulitple jobs too.</p>
+<pre><code class="language-csharp">// Here is a cron schedule trigger which executes
+// at second :00, at minute :00, every hour starting at 00am, 
+// every day starting on the 1st, every month
+var cronTrigger = TriggerBuilder.Create()
+    .WithCronSchedule(&quot;0 0 0/1 1/1 * ? *&quot;)
+    .Build();
+quartzFeature.RegisterJob&lt;HelloJob&gt;(cronTrigger);
+quartzFeature.RegisterJob&lt;AnotherJob&gt;(cronTrigger);
+</code></pre>
+<p>You can customise how the triggers are registered in the scheduler too.
+Here we are setting the identity and description for our trigger</p>
+<pre><code class="language-csharp">// you can setup jobs with data and triggers however you like
+// this lets create a trigger with our preferred identity
+var everyHourTrigger = TriggerBuilder.Create()
+    .WithDescription(&quot;This is my week day trigger, on the hour, every hour&quot;)
+    .WithIdentity(&quot;Every Hour&quot;, &quot;Week days&quot;)
+    .WithDailyTimeIntervalSchedule(x =&gt; x.OnMondayThroughFriday().WithIntervalInHours(1))
+    .Build();
+</code></pre>
 
             </div>
 
@@ -98,12 +131,12 @@
 
             <nav>
 				        <span>
-				        	<strong>Previous: </strong><a href="/ServiceStack.Quartz/documentation/jobdata">Job Data</a>
+				        	<strong>Previous: </strong><a href="/ServiceStack.Quartz/documentation/jobs">Jobs</a>
 
 				        </span>
                 <span class="pull-right">
 
-				        	<strong>Next: </strong><a href="/ServiceStack.Quartz/documentation/logging">Logging</a>
+				        	<strong>Next: </strong><a href="/ServiceStack.Quartz/documentation/jobdata">Job Data</a>
 
 				        </span>
             </nav>

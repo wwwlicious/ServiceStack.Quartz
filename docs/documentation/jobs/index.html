@@ -91,9 +91,28 @@
             <div id="main-pane">
                 <!--title: Jobs-->
 <p>In Quarz, 'Jobs' are executed by triggers.</p>
-<p>In order to create aa Job, create a class that inherits from the <code>IJob</code> interface located in the Quartz assembly.</p>
+<p>In order to create a Job, create a class that inherits from the <code>IJob</code> interface located in the Quartz assembly.</p>
 <pre><code class="language-csharp">&#xD;&#xA;public class MyJob : IJob&#xD;&#xA;{&#xD;&#xA;    public Task Execute(IJobExecutionContext context)&#xD;&#xA;    {&#xD;&#xA;        // ... job code goes here&#xD;&#xA;        return context.AsTaskResult();&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;</code></pre>
-<p>As you can see, the <code>IJob</code> interface requires that we implement the Execute method.</p>
+<p>As you can see, the <code>IJob</code> interface requires that we implement the Execute method.
+It requires a task is returned and we return our context as a task result here.</p>
+<p>ServiceStack's IoC container will inject any dependencies into your jobs too.</p>
+<pre><code class="language-csharp">public class HelloJob : IJob
+{
+    /// &lt;summary&gt;
+    /// Dependencies are automatically injected
+    /// &lt;/summary&gt;
+    public MyService MyService { get; set; }
+
+    public Task Execute(IJobExecutionContext context)
+    {
+        // call our injected service
+        var response = MyService.Any(new Hello { Name = &quot;Bob&quot; });
+        context.Result = response.Result;
+
+        return context.AsTaskResult();
+    }
+}
+</code></pre>
 
             </div>
 

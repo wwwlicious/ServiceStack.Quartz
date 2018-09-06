@@ -27,6 +27,23 @@ public class AppHost : AppHostBase
 }
 ```
 
-In order to get the value within the Job, we can use the `MergedDataMap` on the `IExecutionContext` argument.
+In order to get the value within the Job, we can use the `MergedJobDataMap` on the `IJobExecutionContext` Execute method parameter.
+
 There is also a more convenient method `Get(string keyName)` which we can use
+
+```csharp
+public class HelloJob : IJob
+{
+    public Task Execute(IJobExecutionContext context)
+    {
+        // get job data
+        var contextMergedJobData = context.MergedJobDataMap["Name"]?.ToString();
+
+        // or using Get(key)
+        var jobDataName = context.Get("Name");
+
+        return context.AsTaskResult();
+    }
+}
+```
 

@@ -40,7 +40,7 @@
                 </li>
                 <li>
                     
-                <li><a href="/ServiceStack.Quartz/documentation/triggers" title="Job Tiggers">Previous</a></li>
+                <li><a href="/ServiceStack.Quartz/documentation/jobdata" title="Job Data">Previous</a></li>
                 
                 <li><a href="/ServiceStack.Quartz/documentation/api" title="Api">Next</a></li>
             </ul>
@@ -74,7 +74,7 @@
 
             <h3 class="no-margin">Next</h3>
             <p><a href="/ServiceStack.Quartz/documentation/api">Api</a></p>
-            <h3 class="no-margin">Previous</h3><p><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a></p>
+            <h3 class="no-margin">Previous</h3><p><a href="/ServiceStack.Quartz/documentation/jobdata">Job Data</a></p>
 
             </ul>
         </div><!--/left-->
@@ -90,15 +90,27 @@
 
             <div id="main-pane">
                 <!--title: Logging-->
-<p>If you require logging during your <code>IJob</code> executions, you can simply use the default <a href="http://docs.servicestack.net/logging">ServiceStack logging</a></p>
+<p>If you require logging during your <code>IJob</code> executions, use the default <a href="http://docs.servicestack.net/logging">ServiceStack logging</a></p>
 <pre><code class="language-csharp">ILog log = LogManager.GetLogger(GetType());
 
 log.Debug(&quot;Debug Event Log Entry.&quot;);
 log.Warn(&quot;Warning Event Log Entry.&quot;);
 </code></pre>
+<pre><code class="language-Verilog">[22:40:48 INF] Quartz scheduler 'QuartzScheduler' initialized
+[22:40:48 INF] Quartz scheduler version: 3.0.0.0
+[22:40:48 INF] JobFactory set to: ServiceStack.Quartz.Funq.FunqJobFactory
+[22:40:48 INF] Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+[22:40:49 DBG] Hosting environment: Production
+Content root path: C:\dev\ServiceStack.Quartz\src\demo\ServiceStackQuartz.NetCore
+Now listening on: http://localhost:5000
+Now listening on: https://localhost:5001
+Application started. Press Ctrl+C to shut down.
+Created new Job ServiceStack.Quartz.NetCore.Quartz.Jobs:HelloJob_dreamy_franklin of ServiceStack.Quartz.NetCore.Quartz.Jobs.HelloJob
+[22:40:49 DBG] Batch acquisition of 1 triggers
+[22:40:49 DBG] Calling Execute on job ServiceStack.Quartz.NetCore.Quartz.Jobs.HelloJob_dreamy_franklin
+</code></pre>
 <div class="alert-info alert"><p><strong>Note!</strong>
-Quartz.Net v3.x and above now uses <a href="https://github.com/damianh/LibLog">LibLog</a> for it's own internal logging
-which will be picked up automatically by most common logging libraries and should appear in the ServiceStack logs by default.</p>
+Quartz.Net v3.x and above uses <a href="https://github.com/damianh/LibLog">LibLog</a> for it's own internal logging. This will be picked up automatically by most common logging libraries and should appear in the ServiceStack logs by default.</p>
 </div>
 
             </div>
@@ -107,7 +119,7 @@ which will be picked up automatically by most common logging libraries and shoul
 
             <nav>
 				        <span>
-				        	<strong>Previous: </strong><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a>
+				        	<strong>Previous: </strong><a href="/ServiceStack.Quartz/documentation/jobdata">Job Data</a>
 
 				        </span>
                 <span class="pull-right">

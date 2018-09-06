@@ -40,9 +40,9 @@
                 </li>
                 <li>
                     
-                <li><a href="/ServiceStack.Quartz/documentation/jobs" title="Jobs">Previous</a></li>
+                <li><a href="/ServiceStack.Quartz/documentation/triggers" title="Job Tiggers">Previous</a></li>
                 
-                <li><a href="/ServiceStack.Quartz/documentation/triggers" title="Job Tiggers">Next</a></li>
+                <li><a href="/ServiceStack.Quartz/documentation/logging" title="Logging">Next</a></li>
             </ul>
             <div class="navbar-form navbar-left" role="search">
                 <div class="form-group">
@@ -73,8 +73,8 @@
             <ul class="nav nav-stacked affix" id="sidebar">
 
             <h3 class="no-margin">Next</h3>
-            <p><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a></p>
-            <h3 class="no-margin">Previous</h3><p><a href="/ServiceStack.Quartz/documentation/jobs">Jobs</a></p>
+            <p><a href="/ServiceStack.Quartz/documentation/logging">Logging</a></p>
+            <h3 class="no-margin">Previous</h3><p><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a></p>
 
             </ul>
         </div><!--/left-->
@@ -113,8 +113,22 @@
     }
 }
 </code></pre>
-<p>In order to get the value within the Job, we can use the <code>MergedDataMap</code> on the <code>IExecutionContext</code> argument.
-There is also a more convenient method <code>Get(string keyName)</code> which we can use</p>
+<p>In order to get the value within the Job, we can use the <code>MergedJobDataMap</code> on the <code>IJobExecutionContext</code> Execute method parameter.</p>
+<p>There is also a more convenient method <code>Get(string keyName)</code> which we can use</p>
+<pre><code class="language-csharp">public class HelloJob : IJob
+{
+    public Task Execute(IJobExecutionContext context)
+    {
+        // get job data
+        var contextMergedJobData = context.MergedJobDataMap[&quot;Name&quot;]?.ToString();
+
+        // or using Get(key)
+        var jobDataName = context.Get(&quot;Name&quot;);
+
+        return context.AsTaskResult();
+    }
+}
+</code></pre>
 
             </div>
 
@@ -122,12 +136,12 @@ There is also a more convenient method <code>Get(string keyName)</code> which we
 
             <nav>
 				        <span>
-				        	<strong>Previous: </strong><a href="/ServiceStack.Quartz/documentation/jobs">Jobs</a>
+				        	<strong>Previous: </strong><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a>
 
 				        </span>
                 <span class="pull-right">
 
-				        	<strong>Next: </strong><a href="/ServiceStack.Quartz/documentation/triggers">Job Tiggers</a>
+				        	<strong>Next: </strong><a href="/ServiceStack.Quartz/documentation/logging">Logging</a>
 
 				        </span>
             </nav>
