@@ -26,6 +26,7 @@ namespace ServiceStack.Quartz.NetCore.Quartz.Jobs
 
             // get job data
             var contextMergedJobData = context.MergedJobDataMap["Name"]?.ToString();
+            var jobDataName = context.Get("Name");
 
             // do some work, call a service
             var response = Services.Any(new Hello
