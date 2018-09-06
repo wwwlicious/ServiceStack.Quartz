@@ -1,9 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Copyright>Copyright © 2017</Copyright>
     <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <Configurations>Debug;Release</Configurations>
-    <Title>ServiceStack.Quartz</Title>
     <Description>Easy job scheduling for ServiceStack - https://wwwlicious.github.io/ServiceStack.Quartz/</Description>
     <Authors>Scott Mackay (@wwwlicious)</Authors>
     <Owners>Scott Mackay (@wwwlicious)</Owners>
@@ -13,14 +11,11 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <PackageId>ServiceStack.Quartz</PackageId>
     <Version>$(VersionNumber)</Version>
-    <PackageOutputPath>$(PackageOutputPath)</PackageOutputPath>
     <PackageLicenseUrl>https://opensource.org/licenses/MPL-2.0</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/wwwlicious/ServiceStack.Quartz</PackageProjectUrl>
     <PackageIconUrl>https://wwwlicious.github.io/ServiceStack.Quartz/content/images/logo.png</PackageIconUrl>
     <ReleaseNotes>https://github.com/wwwlicious/ServiceStack.Quartz/releases</ReleaseNotes>
     <PackageTags>servicestack quartz quartznet job schedule plugin</PackageTags>
-    <IncludeSymbols>true</IncludeSymbols>
-    <IncludeSource>true</IncludeSource>
     <RepositoryUrl>https://github.com/wwwlicious/ServiceStack.Quartz</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
@@ -40,7 +35,8 @@
     <DocumentationFile>bin\Release\netstandard2.0\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Quartz" Version="3.0.0-beta1" />
+    <PackageReference Include="GitLink" Version="3.1.0" PrivateAssets="All" />
+    <PackageReference Include="Quartz" Version="3.0.0" />
     <PackageReference Include="ServiceStack.Server" Version="5.2.0" />
   </ItemGroup>
 </Project>
