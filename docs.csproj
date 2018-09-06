@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp1.0</TargetFramework>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
         <AssemblyName>Documentation</AssemblyName>
-        <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+        <!-- <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
         <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-        <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
+        <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion> -->
         <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
         <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
         <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
@@ -19,5 +19,9 @@
 
     <ItemGroup>
         <DotNetCliToolReference Include="dotnet-stdocs" Version="1.1.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="dotnet-stdocs" Version="1.1.1" />
     </ItemGroup>
 </Project>

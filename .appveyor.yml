@@ -1,14 +1,16 @@
-pull_requests:
-  do_not_increment_build_number: true
-image: Visual Studio 2017
-nuget:
-  disable_publish_on_pr: true
+#---------------------------------#
+#  Build Script                   #
+#---------------------------------#
 build_script:
-- ps: ./build.ps1
+  - ps: .\build.ps1 -Target AppVeyor --settings_skipverification=true
+
+
+# Tests
 test: off
-artifacts:
-- path: /artifacts/**/*.nupkg
-  name: nuget
+
+#---------------------------------#
+#        Branches to build        #
+#---------------------------------#
 branches:
   # Whitelist
   only:
@@ -16,5 +18,16 @@ branches:
     - master
     - /release/.*/
     - /hotfix/.*/
+
+#---------------------------------#
+#  Build Cache                    #
+#---------------------------------#
 cache:
-- Tools -> build.ps1
+- src\packages -> src\**\packages.config
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+# Build worker image (VM template)
+image: Visual Studio 2017
