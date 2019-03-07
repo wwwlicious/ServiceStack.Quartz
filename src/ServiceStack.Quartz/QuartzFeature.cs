@@ -20,7 +20,7 @@ namespace ServiceStack.Quartz
         private Dictionary<string, string> _config = new Dictionary<string, string>();
         private string _apiRestPath = "quartz/api";
         internal Dictionary<JobKey, JobInstance> Jobs { get; } = new Dictionary<JobKey, JobInstance>();
-
+        
         /// <summary>
         /// Set quartz specific config overriding defaults
         /// By default, all keys starting with "quartz." are read from configuration
@@ -36,6 +36,16 @@ namespace ServiceStack.Quartz
         /// The assemblies to scan for IJob implementations
         /// </summary>
         public Assembly[] JobAssemblies { get; set; }
+        
+        /// <summary>
+        /// Add addition trigger listeners to the scheduler
+        /// </summary>
+        public List<ITriggerListener> TriggerListeners { get; } = new List<ITriggerListener>();
+        
+        /// <summary>
+        /// Add addition jobs listeners to the scheduler. InMemoryJobListener added by default 
+        /// </summary>
+        public List<IJobListener> JobListeners { get; } = new List<IJobListener> {new InMemoryJobListener()}; 
 
         /// <summary>
         /// checks all assemblies for exported public IJob concrete types
@@ -118,7 +128,10 @@ namespace ServiceStack.Quartz
             }
 
             scheduler.Start();
-            scheduler.ListenerManager.AddJobListener(new InMemoryJobListener());
+            
+            // register additional listeners
+            JobListeners.Each(x => scheduler.ListenerManager.AddJobListener(x));
+            TriggerListeners.Each(x => scheduler.ListenerManager.AddTriggerListener(x));
         }
 
         /// <summary>
