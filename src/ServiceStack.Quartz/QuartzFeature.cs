@@ -9,7 +9,6 @@ namespace ServiceStack.Quartz
     using System.Reflection;
     using global::Quartz;
     using ServiceStack.Quartz.Funq;
-    using ServiceStack.VirtualPath;
 
     /// <summary>
     /// Sets up a quartz.net scheduler and scans assemblies to register IJob implementations by default
@@ -57,7 +56,7 @@ namespace ServiceStack.Quartz
         /// Executed before any plugin is registered
         /// </summary>
         /// <param name="appHost"></param>
-        public void Configure(IAppHost appHost)
+        public void BeforePluginsLoaded(IAppHost appHost)
         {
         }
 
