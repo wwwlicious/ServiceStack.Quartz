@@ -1,7 +1,7 @@
 <!--title: Job Tiggers-->
 
-Job aren't much use with triggers. These tell Quartz when to run the jobs.
-You configure these in ServiceStack's `AppHost` configuration.
+Job aren't much use without triggers. These tell Quartz when to run the jobs.
+You configure triggers in ServiceStack's `AppHost` configuration.
 
 ```csharp
 // first let's create the plugin and add it to our apphost

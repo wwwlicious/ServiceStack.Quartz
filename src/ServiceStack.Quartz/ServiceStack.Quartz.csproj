@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <Configurations>Debug;Release</Configurations>
@@ -37,6 +37,6 @@
   <ItemGroup>
     <PackageReference Include="GitLink" Version="3.1.0" PrivateAssets="All" />
     <PackageReference Include="Quartz" Version="3.0.7" />
-    <PackageReference Include="ServiceStack.Server" Version="5.2.0" />
+    <PackageReference Include="ServiceStack.Server" Version="5.6.0" />
   </ItemGroup>
 </Project>
