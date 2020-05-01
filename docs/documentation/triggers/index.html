@@ -90,8 +90,8 @@
 
             <div id="main-pane">
                 <!--title: Job Tiggers-->
-<p>Job aren't much use with triggers. These tell Quartz when to run the jobs.
-You configure these in ServiceStack's <code>AppHost</code> configuration.</p>
+<p>Job aren't much use without triggers. These tell Quartz when to run the jobs.
+You configure triggers in ServiceStack's <code>AppHost</code> configuration.</p>
 <pre><code class="language-csharp">// first let's create the plugin and add it to our apphost
 var quartzFeature = new QuartzFeature();
 Plugins.Add(quartzFeature);
