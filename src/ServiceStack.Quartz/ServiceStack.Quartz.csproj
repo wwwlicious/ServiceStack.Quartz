@@ -17,7 +17,7 @@
     <ReleaseNotes>https://github.com/wwwlicious/ServiceStack.Quartz/releases</ReleaseNotes>
     <PackageTags>servicestack quartz quartznet job schedule plugin</PackageTags>
     <RepositoryUrl>https://github.com/wwwlicious/ServiceStack.Quartz</RepositoryUrl>
-    <LangVersion>8</LangVersion>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NET452;</DefineConstants>
