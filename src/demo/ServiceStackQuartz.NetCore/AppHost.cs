@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using ServiceStack.Auth;
+
 namespace ServiceStack.Quartz.NetCore
 {
     using System;
@@ -34,9 +37,21 @@ namespace ServiceStack.Quartz.NetCore
             var quartzConfig = ConfigureQuartz();
 
             // register plugin, will scan assemblies by default for jobs
-            var quartzFeature = new QuartzFeature();
+            var quartzFeature = new QuartzFeature()
+            {
+                RequiredRoles = new[]{"Admin"}
+            };
             Plugins.Add(quartzFeature);
             Plugins.Add(new PostmanFeature());
+
+            // var inMemoryAuthRepository = new InMemoryAuthRepository();
+            // inMemoryAuthRepository.CreateUserAuth(
+            //     new UserAuth() {UserName = "test", Roles = new List<string> {"Admin"}}, "test");
+            // Register<IAuthRepository>(inMemoryAuthRepository);
+            //
+            // Plugins.Add(new AuthFeature(
+            //     () => new AuthUserSession(), 
+            //     new IAuthProvider[] {new BasicAuthProvider(),}));
 
             // or you can register the plugin with custom config source
             Plugins.AddIfNotExists(new QuartzFeature { Config = quartzConfig });

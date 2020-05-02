@@ -11,7 +11,7 @@ namespace ServiceStack.Quartz
     public class QuartzService : Service
     {
         public IScheduler Scheduler { get; set; }
-
+        
         public object Get(GetQuartzSummary request)
         {
             return new GetQuartzSummaryResponse

@@ -51,6 +51,11 @@ namespace ServiceStack.Quartz
         /// True by default
         /// </summary>
         public bool ScanAppHostAssemblies { get; set; } = true;
+        
+        /// <summary>
+        /// Limit access to /quartz service to these roles
+        /// </summary>
+        public string[] RequiredRoles { get; set; }
 
         /// <summary>
         /// Executed before any plugin is registered
@@ -76,9 +81,19 @@ namespace ServiceStack.Quartz
             }
 
             // TODO list
-            // Wire up common logging from Quartz -> SericeStack
+            // Wire up common logging from Quartz -> ServiceStack
             // Register service for getting info from scheduler
-            appHost.RegisterService(typeof(QuartzService), _apiRestPath);
+            var serviceType = typeof(QuartzService);
+            if (!RequiredRoles.IsEmpty())
+            {
+                if (!appHost.HasPlugin<AuthFeature>())
+                    throw new System.Configuration.ConfigurationErrorsException(
+                        "RequiredRoles has been specified but AuthFeature plugin has been registered to handle authorization"); 
+
+                serviceType.AddAttributes(new RequiresAnyRoleAttribute(RequiredRoles));
+            }
+
+            appHost.RegisterService(serviceType, _apiRestPath);
             
             // add endpoint link to metadata page
             ConfigurePluginLinks(appHost);

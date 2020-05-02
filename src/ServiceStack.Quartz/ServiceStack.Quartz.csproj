@@ -17,6 +17,7 @@
     <ReleaseNotes>https://github.com/wwwlicious/ServiceStack.Quartz/releases</ReleaseNotes>
     <PackageTags>servicestack quartz quartznet job schedule plugin</PackageTags>
     <RepositoryUrl>https://github.com/wwwlicious/ServiceStack.Quartz</RepositoryUrl>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NET452;</DefineConstants>
@@ -35,8 +36,8 @@
     <DocumentationFile>bin\Release\netstandard2.0\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="GitLink" Version="3.1.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" />
     <PackageReference Include="Quartz" Version="3.0.7" />
-    <PackageReference Include="ServiceStack.Server" Version="5.6.0" />
+    <PackageReference Include="ServiceStack.Server" Version="5.8.0" />
   </ItemGroup>
 </Project>

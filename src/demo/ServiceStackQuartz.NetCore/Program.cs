@@ -1,10 +1,10 @@
 namespace ServiceStack.Quartz.NetCore
 {
     using System;
-    using Microsoft.AspNetCore;
-    using Microsoft.AspNetCore.Hosting;
     using Serilog;
     using Serilog.Events;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
 
     public class Program
     {
@@ -14,7 +14,6 @@ namespace ServiceStack.Quartz.NetCore
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .Enrich.FromLogContext()
-                .WriteTo.Seq("http://localhost:5341")
                 .WriteTo.LiterateConsole()
                 .CreateLogger();
 
@@ -34,11 +33,11 @@ namespace ServiceStack.Quartz.NetCore
                 Log.CloseAndFlush();
             }
         }
-
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
+        
+        public static IHost BuildWebHost(string[] args) =>
+            Host.CreateDefaultBuilder(args)
                 .UseSerilog()
+                .ConfigureWebHostDefaults(builder => builder.UseStartup<Startup>())
                 .Build();
     }
 }
