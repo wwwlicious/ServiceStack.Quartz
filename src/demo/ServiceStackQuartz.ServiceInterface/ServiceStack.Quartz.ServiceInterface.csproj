@@ -8,6 +8,6 @@
     <ProjectReference Include="..\ServiceStackQuartz.ServiceModel\ServiceStack.Quartz.ServiceModel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ServiceStack.Server" Version="5.8.0" />
+    <PackageReference Include="ServiceStack.Server" Version="5.10.2" />
   </ItemGroup>
 </Project>
