@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net472</TargetFrameworks>
     <Configurations>Debug;Release</Configurations>
     <Description>Easy job scheduling for ServiceStack - https://wwwlicious.github.io/ServiceStack.Quartz/</Description>
     <Authors>Scott Mackay (@wwwlicious)</Authors>
@@ -20,12 +20,12 @@
     <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
-    <DefineConstants>TRACE;DEBUG;NET452;</DefineConstants>
-    <DocumentationFile>bin\Debug\net452\ServiceStack.Quartz.xml</DocumentationFile>
+    <DefineConstants>TRACE;DEBUG;NET472;</DefineConstants>
+    <DocumentationFile>bin\Debug\net472\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
-    <DefineConstants>TRACE;DEBUG;NET452</DefineConstants>
-    <DocumentationFile>bin\Release\net452\ServiceStack.Quartz.xml</DocumentationFile>
+    <DefineConstants>TRACE;DEBUG;NET472</DefineConstants>
+    <DocumentationFile>bin\Release\net472\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;</DefineConstants>
@@ -36,8 +36,8 @@
     <DocumentationFile>bin\Release\netstandard2.0\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" />
-    <PackageReference Include="Quartz" Version="3.0.7" />
-    <PackageReference Include="ServiceStack.Server" Version="5.8.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+    <PackageReference Include="Quartz" Version="3.4.0" />
+    <PackageReference Include="ServiceStack" Version="6.3.0" />
   </ItemGroup>
 </Project>
