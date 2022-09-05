@@ -19,11 +19,11 @@
     <RepositoryUrl>https://github.com/wwwlicious/ServiceStack.Quartz</RepositoryUrl>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NET472;</DefineConstants>
     <DocumentationFile>bin\Debug\net472\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NET472</DefineConstants>
     <DocumentationFile>bin\Release\net472\ServiceStack.Quartz.xml</DocumentationFile>
   </PropertyGroup>
